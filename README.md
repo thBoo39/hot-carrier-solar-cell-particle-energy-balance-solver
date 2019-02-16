@@ -1,6 +1,6 @@
 # Hot Carrier Solar Cell DB (Detailed Balance) solver
 
-Shockley-Queisser limit ![](.fig/SQLimit.png)
+Shockley-Queisser limit ![](fig/SQLimit.png)
 
 ## Example
 
