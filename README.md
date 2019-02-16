@@ -16,11 +16,12 @@ However, in an aspect, it is not realistic because the carrier thermalization is
 
 **References:**
 
-[1] Robert T. Ross and Arthur J. Nozik. Eciency of hot-carrier solar energy converters. Journal of Applied
+[1] Robert T. Ross and Arthur J. Nozik. Eficiency of hot-carrier solar energy converters. Journal of Applied
 Physics, 53(5):3813{3818, 1982.
 
-[2] Peter Wurfel. Solar energy conversion with hot electrons from impact ionisation. Solar Energy Materials
+[2] Peter Wurfel. Solar energy conversion with hot electrons from impact ionisation. Solar Energy Materials
 and Solar Cells, 46(1):43{52, 1997.
+
 
 ## Example
 
