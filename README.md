@@ -12,9 +12,7 @@ Ross and Nozik [1], as well as Wurfel [2] suggested the hot carrier solar cell (
 
 Chemical potential, or quasi-Fermi level in the absorber is &mu;<sub>c</sub> and that in contactc is denoted as &mu;<sub>e</sub>. If the carriers are extracted before thermalization to the band edges but after electron electron scattering which is super fast process, the carrier distributions can be described as heated Fermi-Dirac distribution with its own carrier temperature T<sub>c</sub>, which is higher than the room temperature T<sub>rm</sub>. For hot carrier solar cells to be effective, it is desirable to have narrow band gap materials although Wurfel suggests Auger recombinations are imminent. But in Ross and Nozik model, non-radiative recombinations are not considered. Nevertheless, it will provide the upper limit, just like in the Shockley-Queisser limit. The figure bottom right shows the upper limit of hot carrier solar cell in Ross and Nozik model with various carrier temperatures. If the hot carriers are significantly utilized, it can go beyond the Shockley-Queisser limit.
 
-<img src="fig\SchematicHCSC.png" width=48%>
-
-<img src="fig\Eff_Eg_T_1000_sun.png" width=48%>
+<img src="fig\SchematicHCSC.png" width=48%><img src="fig\Eff_Eg_T_1000_sun.png" width=48%>
 
 The carrier thermalization process is very rapid , typically in the order of less than pico seconds. It is quite challenging to find an absorber material with slow cooling.
 
