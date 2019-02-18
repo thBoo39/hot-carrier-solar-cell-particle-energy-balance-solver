@@ -101,6 +101,8 @@ Furthermore, it is necessary to find optimized extraction energy level at energy
 
 ```python
 >>> test.maxPouthc_opt_ESC(scell, 50)
+cnt1:0/17 cnt2:0/1
+deltaEesc:0.65(eV) Ewesc:5.000e+00(meV)
 Solving Voc
 Count:0 Tc:300.12 mue(eV):0.000 Bias(V):0.000 J(A/m^2):4.34 P(W/m^2):0.00 
 Count:1 Tc:300.12 mue(eV):0.002 Bias(V):0.004 J(A/m^2):4.34 P(W/m^2):0.02 
@@ -138,6 +140,164 @@ dEesc:0.65(eV) Ewesc:5.000e+00(meV)
 
 ## Usage
 
+Some class attributes and methods are omitted for readability.
+
+```python
+class hcsc(hcscAttribute):
+
+    """ A class used to calculate hot carrier solar cell characteristics
+
+    Methods
+    -------
+    shine(self, ph_in)
+        do this first so that photons are absorbed in the cell
+        set light source defined by photon_in class
+        Calculate photon flux, energy flux, etc
+    Jouthc(self, mue)
+        Current output of the hot carrier
+        return
+    Vochc(self, fmaxP=False, dsp_msg=True)
+        solve Voc
+        mue should be in unit eV so that brentq gives accurate value
+    Pouthc(self, mue)
+        return poewr output at given mue
+        note mue is measured from Eg/2
+        symmetric two band model
+        hence mue difference at contacts is 2*mue
+    maxPouthc(self)
+        solve max power at given Eg, ESC E and Ew
+    """
+
+class Photon_in(object):
+    """ defining spectrum
+    default spectrum is AM15 if n=2
+
+    attributes
+    ----------
+    c : float
+        concentratoin factor
+    """
+
+test.py:
+def IV(scell):
+    """Plot IV characteristics
+
+    parameters
+    ----------
+    scell : class hcsc
+
+    Returns
+    -------
+    none
+    """	
+	
+def PV(scell):
+    """Plot PV characteristics
+    parameters
+    ----------
+    scell : class hcsc
+
+    Returns
+    -------
+    none
+    """
+
+def maxPouthc_opt_ESC(scell, numEesc=50, g_skip=False):
+    """solve maxpower at given Eg optimizing ESC E and Ew
+    Energy level of ESC are between 50% of Eg to 300% of Eg
+
+    Parameters
+    ----------
+    scell : class hcsc
+    numEesc : int
+        number of trials for ESC energy level
+    g_skip : bool
+        if g_skip is True, scan all possible values during optimization process possibly more accurate, but significantly increase process time
+
+    Returns
+    -------
+    maxP : float
+        W/m^2
+    maxT : float
+        K
+    optEesc : float
+        J
+    optEwesc : float
+        J
+    """
+
+class hcscAttribute:
+    def __init__(self):
+        """
+        Attributes
+        ----------
+        Trm : float
+            solar cell temperature
+        tau_th : float
+            carrier thermalization time
+        tau_pp : float
+            optical phonon decay time
+        NM : float
+            number of phonon modes
+        Tph : float
+            optical phonon temperature
+        EP : bool
+             if true, solve electron phonon balance equations
+        d : float
+            thickness of the cell if bulk structure is assumed
+        Ephn : float
+            dominant phonon energy (only used in polar optical (POP) scattering)
+        hw0 : float
+            dominant longitudinal optical (LO) phonon energy
+        absb : class
+            absorber class object defined in a separate file
+        lcnt : class
+            left electrical contact defined in a separte file
+        rcnt : class
+            right electrical contacts defined in a separete file
+        lesc : class
+            left energy selective contact defined in a separate file
+        resc :class
+            right energy selective contact defined in a separate file
+        Jext : function
+            current through energy selective contact
+        Uext : function
+            energy through energy selective contact
+        Uth : function
+            carrier energy thermalization rate
+        _c1 : float
+            constant variables
+        _cJ : float
+            constant variables
+        _cS : float
+            constant variables
+
+        Methods
+        -------
+        display_attributes(self):
+            print attributes
+        JextTherm(muc, mue)
+            current flux extraction via thermionic emission
+        UextTherm(muc, mue)
+            energy flux extraction via thermionic emission
+        JextESC(self, muc, mue)
+            extracted current through tunneling
+            assume carrier selective contact
+            electron current flows from absb to right contact (absb->resc->rcnt)
+        UextESC(self, muc, mue)
+            extracted energy flux
+        JextRN(self, muc, mue)
+            unused
+        UextRN(self, muc, mue)
+            unused
+        Uthstandard(self, muc):
+            standard thermalization
+            consider dimension
+            try 3D
+            parameter is tau_th thermalization time
+
+        """
+```
 
 ## Background
 
@@ -163,6 +323,14 @@ Physics, 53(5):3813{3818, 1982.
 
 [2] Peter Wurfel. Solar energy conversion with hot electrons from impact ionisation. Solar Energy Materials
 and Solar Cells, 46(1):43{52, 1997.
+
+
+## Speeding up
+
+3 pyx files and setup.py file are ready for Cython. If someone can speed up scipy.integrate.quad, it will be great. scipy.LowLevelCallable seems to be the way to go but I can't figure it out how to use it.
+
+Other than that, solver can be improved by using differential method so that it can skip lots of computation along flat IV curve, for example.
+
 
 ## Prerequisites
 
