@@ -61,7 +61,7 @@ To show hot carrier solar cell current (A/m<sup>2</sup>) at 0.2V bias,
 >>> print("Jout:{:.3f}(A/m^2)".format(scell.Jouthc(0.2/2*nu.eV)[0]))
 Jout:40.030(A/m^2)
 ```
-The parameter is the half the bias multiplied by q (elemntary charge).
+The parameter is the half the bias multiplied by q (elemntary charge). Jouthc returns 2 variables, current flux and boolean value telling solution is found or not.
 
 To show hot carrier solar cell power (W/m<sup>2</sup>) at 0.2V bias,
 ```python
