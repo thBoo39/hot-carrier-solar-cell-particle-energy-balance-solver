@@ -315,8 +315,8 @@ Photon flux from the sun will be absorbed with quantum efficiency of 1 above ene
 Energy extracted through energy selective contacts should balance to the amount of energy absorbed subtracted by radiative recombinations and carrier thermalization. This is what is described in the equation below.
 
 <p align="center">
-<img src="fig\particle_balance.PNG" width=75%>
-<img src="fig\energy_balance.PNG" width=75%>
+<img src="fig\particle_balance.PNG" width=70%>
+<img src="fig\energy_balance.PNG" width=70%>
 </p>
 
 **References:**
@@ -345,16 +345,22 @@ It will solve both equations decently. But sometimes solution is not so smooth a
 
 ## Speeding up
 
-3 pyx files and setup.py file are ready for Cython. If someone can speed up scipy.integrate.quad, it will be great. scipy.LowLevelCallable seems to be the way to go but I can't figure it out how to use it.
+3 pyx files and setup.py file are ready for Cython. It will cut the process time in half.
 
-Other than that, solver can be improved by using differential method so that it can skip lots of computation along flat IV curve, for example.
+If anyone can figure out use of scipy.LowLevelCallable to speed up scipy.integrate.quad, it will be great.
+
+Solver can be improved. For example, considering differential in each points, it can skip lots of computation along flat IV curve.
 
 
 ## Prerequisites
 
 Confirmed working with Python 3.7
 
-Numpy, Scipy and MatPlotLib are required.
+It also require:
+
+* Numpy
+* Scipy
+* MatPlotLib.
 
 ## Installing
 
