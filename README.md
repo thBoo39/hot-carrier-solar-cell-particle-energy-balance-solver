@@ -8,7 +8,7 @@ Upper limit of hot carrier solar cells efficiency is solved by solving both part
 
 ## Example
 
-Make sure you have ASTMG173.csv available by downloading from [NREL web site](https://rredc.nrel.gov/solar//spectra/am1.5/). 
+Make sure you have ASTMG173.csv available by downloading from [NREL web site](https://rredc.nrel.gov/solar//spectra/am1.5/).
 
 Import hcsc module
 
@@ -76,11 +76,11 @@ To show the max power under the given condition, use maxPouthc() method. First i
 ```python
 >>> print("MaxPout:{:.3f}(W/m^2)".format(scell.maxPouthc()[0]))
 Solving Voc
-Count:0 Tc:551.68 mue(eV):0.000 Bias(V):0.000 J(A/m^2):6786.75 P(W/m^2):0.00 
-Count:1 Tc:556.21 mue(eV):0.002 Bias(V):0.004 J(A/m^2):6786.75 P(W/m^2):27.15 
+Count:0 Tc:551.68 mue(eV):0.000 Bias(V):0.000 J(A/m^2):6786.75 P(W/m^2):0.00
+Count:1 Tc:556.21 mue(eV):0.002 Bias(V):0.004 J(A/m^2):6786.75 P(W/m^2):27.15
 .......
-Count:59 Tc:300.62 mue(eV):0.118 Bias(V):0.236 J(A/m^2):738.11 P(W/m^2):174.19 
-Count:60 Tc:300.61 mue(eV):0.120 Bias(V):0.240 J(A/m^2):-195.59 P(W/m^2):-46.94 
+Count:59 Tc:300.62 mue(eV):0.118 Bias(V):0.236 J(A/m^2):738.11 P(W/m^2):174.19
+Count:60 Tc:300.61 mue(eV):0.120 Bias(V):0.240 J(A/m^2):-195.59 P(W/m^2):-46.94
 Stop iteration at mue(eV):1.200000e-01
 maxP (W/m^2):1083.2
 ```
@@ -104,11 +104,11 @@ To find optimized extraction energy level at energy selective contact, use maxPo
 cnt1:0/9 cnt2:0/1
 deltaEesc:0.35(eV) Ewesc:5.000e+00(meV)
 Solving Voc
-Count:0 Tc:311.94 mue(eV):0.000 Bias(V):0.000 J(A/m^2):6786.15 P(W/m^2):0.00 
-Count:1 Tc:311.06 mue(eV):0.002 Bias(V):0.004 J(A/m^2):6786.05 P(W/m^2):27.14 
+Count:0 Tc:311.94 mue(eV):0.000 Bias(V):0.000 J(A/m^2):6786.15 P(W/m^2):0.00
+Count:1 Tc:311.06 mue(eV):0.002 Bias(V):0.004 J(A/m^2):6786.05 P(W/m^2):27.14
 ......
-Count:65 Tc:300.63 mue(eV):0.130 Bias(V):0.260 J(A/m^2):0.06 P(W/m^2):0.02 
-Count:66 Tc:300.63 mue(eV):0.132 Bias(V):0.264 J(A/m^2):-0.01 P(W/m^2):-0.00 
+Count:65 Tc:300.63 mue(eV):0.130 Bias(V):0.260 J(A/m^2):0.06 P(W/m^2):0.02
+Count:66 Tc:300.63 mue(eV):0.132 Bias(V):0.264 J(A/m^2):-0.01 P(W/m^2):-0.00
 Stop iteration at mue(eV):1.320000e-01
 less than before. skip optimization
 Max Power (W/m^2) [[1.10025840e+03]
@@ -135,7 +135,7 @@ dEesc:0.55(eV) Ewesc:5.000e+00(meV)
 ```
 Note that band gap energy is 0.354eV (InAs). The optimization found that the extraction energy is 0.55eV wide (or 0.098eV above the band edge) for thermionic emission (default).
 
-## Usage
+## Classes and functions
 
 Some class attributes and methods are omitted for readability.
 
@@ -152,15 +152,10 @@ class hcsc(hcscAttribute):
         Calculate photon flux, energy flux, etc
     Jouthc(self, mue)
         Current output of the hot carrier
-        return
     Vochc(self, fmaxP=False, dsp_msg=True)
-        solve Voc
-        mue should be in unit eV so that brentq gives accurate value
+        solve open circuit voltage Voc
     Pouthc(self, mue)
-        return poewr output at given mue
-        note mue is measured from Eg/2
-        symmetric two band model
-        hence mue difference at contacts is 2*mue
+        return power output at given mue
     maxPouthc(self)
         solve max power at given Eg, ESC E and Ew
     """
@@ -186,8 +181,8 @@ def IV(scell):
     Returns
     -------
     none
-    """	
-	
+    """
+
 def PV(scell):
     """Plot PV characteristics
     parameters
@@ -294,6 +289,23 @@ class hcscAttribute:
             parameter is tau_th thermalization time
 
         """
+```
+
+## File dependency
+
+```
+hcsc.py <-
+    hcscAttribute.py
+    recombination.py
+    photon_in.py
+    nu.py
+    myutil.py
+
+hcscAttribute.py <-
+    bulk.py
+    contacts.py
+    extraction_via_ESC.py
+    nu.py
 ```
 
 ## Background
