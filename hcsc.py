@@ -19,8 +19,6 @@ import myutil  # basic utility
 import nu  # numerical unit
 # defining photon flux, concentratoin factor etc
 import photon_in
-# current and energy flux through ESC
-import extraction_via_ESC as viaESC
 # radiative recombination by generalized planck law
 import recombination as rec
 # defining material properties, thermalization time, ESC energy level etc

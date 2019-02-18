@@ -3,16 +3,15 @@ import numpy as np
 from scipy import constants as sc
 from scipy import integrate
 import nu
-from matplotlib import pyplot as plt
 
 
 class bulk(object):
     """docstring for mat"""
     def __init__(self, T=300):
         # electron effective mass
-        self.m_e = .1*sc.m_e
+        self.m_e = .023*sc.m_e
         # bandgap
-        self.Eg = 0.65*sc.eV
+        self.Eg = 0.354*sc.eV
         # carrier temperature in the quantum well
         self.T = T
         # constant for 2d density of states

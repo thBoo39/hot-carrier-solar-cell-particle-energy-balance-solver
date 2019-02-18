@@ -120,6 +120,8 @@ class hcscAttribute:
         # energy selective contacts left and right
         self.lesc = contacts.energy_selective_contact()
         self.resc = contacts.energy_selective_contact()
+        # default set extraction energy at 5% above energy band gap
+        self.resc.E = self.absb.Eg*1.05
         # These are constants
         self._c1 = 2*np.pi/(sc.h**3*sc.c**2)  # Jrec
         self._cJ = sc.e*self.absb.m_e/(2*np.pi**2*sc.hbar**3)  # Je

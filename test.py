@@ -46,6 +46,8 @@ def IV(scell):
     print('maxJ (A/m^2):{0:3.1f}'.format(maxJ))
     plt.plot(2*mue/nu.eV, J)
     plt.ylim(0, max(J)*1.2)
+    plt.xlabel("Bias (V)")
+    plt.ylabel(r"Current density (A/m$^2$)")
     title_label = ('IV curve')
     plt.title(title_label)
     plt.show()
@@ -158,8 +160,8 @@ def maxPouthc_opt_ESC(scell, numEesc=50, g_skip=False):
     maxT = T[maxPidx]
     optEesc = escE[maxPidx[0]]
     optEwesc = escEw[maxPidx[1]]
-    print("Power (W/m^2)", P)
-    print("Temperature (K)", T)
+    print("Max Power (W/m^2)", P)
+    print("Carrier Temperature (K)", T)
     print("maxP:{0:g} (W/m^2)".format(maxP))
     print("T:{0:g}(K)".format(maxT))
     print(('dEesc:{0:1.2f}(eV) '.format(2*optEesc/nu.eV) +
