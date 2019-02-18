@@ -8,6 +8,8 @@ Upper limit of hot carrier solar cells efficiency is solved by solving both part
 
 ## Example
 
+Make sure you have ASTMG173.csv available by downloading from [NREL web site](https://rredc.nrel.gov/solar//spectra/am1.5/). 
+
 Import hcsc module
 
 ```python
@@ -361,6 +363,8 @@ It also require:
 * Numpy
 * Scipy
 * MatPlotLib.
+* ASTMG173.csv (available by downloading from [NREL web site](https://rredc.nrel.gov/solar//spectra/am1.5/). "Text Files in Compressed Format" is the one needs to be unpacked.)
+
 
 ## Installing
 
