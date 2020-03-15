@@ -370,7 +370,7 @@ Solver can be improved. For example, considering differential in each points, it
 
 Confirmed working with Python 3.7 on Windows 10
 
-It also require:
+It also requires:
 
 * Numpy
 * Scipy
